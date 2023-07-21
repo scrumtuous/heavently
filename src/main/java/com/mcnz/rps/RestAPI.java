@@ -35,22 +35,22 @@ public class RestAPI {
 	
 	@GetMapping("/score/increaseties")
 	public int increaseties() {
-		return score.losses++;
+		return score.ties++;
 	}
 	
 	@GetMapping("/score/wins")
 	public int getWins() {
-		return score.wins++;
+		return score.wins;
 	}
 	
 	@GetMapping("/score/losses")
 	public int getLosses() {
-		return score.losses++;
+		return score.losses;
 	}
 	
 	@GetMapping("/score/ties")
 	public int getTies() {
-		return score.losses++;
+		return score.ties;
 	}
 }
 

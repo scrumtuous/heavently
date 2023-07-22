@@ -5,9 +5,9 @@ apply plugin: 'maven'
 apply plugin: 'application'
 
 group = 'com.webage.rps'
-version = '0.0.1x-SNAPSHOT'
 
-description = "eventful"
+
+description = "rps"
 
 mainClassName = "com.webage.App"
 

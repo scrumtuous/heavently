@@ -1,5 +1,7 @@
 package com.mcnz.rps;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 /*
 To run the RestAPI the URL should be http://localhost:8080/score
 
@@ -12,42 +14,42 @@ gradle --version
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//@CrossOrigin  Enable this to allow the APIs to be invoked from a webpage with a different domain name
+@CrossOrigin  //Enable this to allow the APIs to be invoked from a webpage with a different domain name
 @RestController
 public class RestAPI {
 	
 	public static Score score = new Score();
-	
-	@GetMapping("/score")
+	@CrossOrigin
+	@GetMapping({"/", "/score"})
 	public Score getScore() {
 		return score;
 	}
-	
+	@CrossOrigin
 	@GetMapping("/score/increasewins")
 	public int increasewins() {
 		return score.wins++;
 	}
-	
+	@CrossOrigin
 	@GetMapping("/score/increaselosses")
 	public int increaselosses() {
 		return score.losses++;
 	}
-	
+	@CrossOrigin
 	@GetMapping("/score/increaseties")
 	public int increaseties() {
 		return score.ties++;
 	}
-	
+	@CrossOrigin
 	@GetMapping("/score/wins")
 	public int getWins() {
 		return score.wins;
 	}
-	
+	@CrossOrigin
 	@GetMapping("/score/losses")
 	public int getLosses() {
 		return score.losses;
 	}
-	
+	@CrossOrigin
 	@GetMapping("/score/ties")
 	public int getTies() {
 		return score.ties;

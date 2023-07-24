@@ -11,7 +11,7 @@ public class DaoConfig {
 	
 	@Bean
 	JdbcTemplate jdbcTemplate(DataSource ds) {
-	return new JdbcTemplate(ds);
+	  return new JdbcTemplate(ds);
 	}
 
 }

@@ -26,6 +26,12 @@ public class RestAPI {
 	@Autowired
 	private GameSummaryDAO gameSummaryDAO;
 	
+	@CrossOrigin
+	@GetMapping("/gamesummary")
+	public Collection<GameSummary> getGameSummarys() {
+		return gameSummaryDAO.getAllGameSummarys();
+	}
+	
 	public static Score score = new Score();
 	@CrossOrigin
 	@GetMapping({"/", "/score"})
@@ -63,11 +69,7 @@ public class RestAPI {
 		return score.ties;
 	}
 	
-	@CrossOrigin
-	@GetMapping("/gamesummary")
-	public Collection<GameSummary> getGameSummarys() {
-		return gameSummaryDAO.getAllGameSummarys();
-	}
+
 	
 
 	

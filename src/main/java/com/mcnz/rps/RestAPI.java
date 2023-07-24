@@ -1,5 +1,8 @@
 package com.mcnz.rps;
 
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 /*
@@ -14,9 +17,14 @@ gradle --version
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mcnz.dao.GameSummaryDAO;
+
 @CrossOrigin  //Enable this to allow the APIs to be invoked from a webpage with a different domain name
 @RestController
 public class RestAPI {
+	
+	@Autowired
+	private GameSummaryDAO gameSummaryDAO;
 	
 	public static Score score = new Score();
 	@CrossOrigin
@@ -54,5 +62,14 @@ public class RestAPI {
 	public int getTies() {
 		return score.ties;
 	}
+	
+	@CrossOrigin
+	@GetMapping("/gamesummary")
+	public Collection<GameSummary> getGameSummarys() {
+		return gameSummaryDAO.getAllGameSummarys();
+	}
+	
+
+	
 }
 

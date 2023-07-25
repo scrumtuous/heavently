@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mcnz.dao.GameSummaryDAO;
-
 @CrossOrigin  //Enable this to allow the APIs to be invoked from a webpage with a different domain name
 @RestController
 public class RestAPI {

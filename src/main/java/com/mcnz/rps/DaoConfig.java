@@ -1,4 +1,4 @@
-package com.mcnz.dao;
+package com.mcnz.rps;
 
 import javax.sql.DataSource;
 

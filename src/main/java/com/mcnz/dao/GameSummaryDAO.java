@@ -18,9 +18,10 @@ public class GameSummaryDAO  {
 	JdbcTemplate jdbcTemplate;
 
 	//@Override
-	public void saveGameSummary(GameSummary gameSummary) {
-        String sql = "INSERT INTO GAMESUMMARY (CLIENTGESTURE, SERVERGESTURE, RESULTS, DATE) VALUES (?, ?, ?, ?)";
+	public GameSummary saveGameSummary(GameSummary gameSummary) {
+        String sql = "INSERT INTO GAMESUMMARY (CLIENTGESTURE, SERVERGESTURE, RESULT, TIMEPLAYED) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sql, gameSummary.getClientGesture(), gameSummary.getServerGesture(), gameSummary.getResult(), gameSummary.getTimePlayed());
+        return gameSummary;
 	}
 
 	//@Override

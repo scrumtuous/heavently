@@ -34,6 +34,36 @@ updateServer = function(postfix){
 
 }
 
+addGameSummary = function(json){
+	console.log(json);
+	let url = "http://localhost:8080/gamesummary";
+	console.log(url);
+	
+	 fetch(url, {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json'
+         },
+         body: json
+     })
+     .then(response => {
+         if (!response.ok) {
+             throw new Error('Network response was not ok');
+         }
+         return response.json();
+     })
+     .then(data => {
+         console.log('Game summary added successfully:', data);
+         // Perform any other actions after the successful addition of the game summary
+     })
+     .catch(error => {
+         console.error('Error adding game summary:', error);
+         // Handle error scenarios, if required
+     });
+
+}
+
+
 updateDisplayedScore = function(clientGesture){
     // @CrossOrigin CORS support on REST API required for this
 	let url = "http://localhost:8080/score"
@@ -56,16 +86,21 @@ playRoshambo = function(clientGesture){
 	if (clientGesture=='paper') { 
 	  result = "lose";
 	  updateServer("wins");
+	  addGameSummary("{\"clientGesture\":\"PAPER\",\"serverGesture\":\"ROCK\",\"result\":\"WIN\",\"timePlayed\":\"2010-05-12T04:00:00.000+0000\"}")
 	} // end if
 
 	if (clientGesture=='scissors') {
 	  result = "loss";
 	  updateServer("losses");
+	  addGameSummary("{\"clientGesture\":\"SCISSORS\",\"serverGesture\":\"ROCK\",\"result\":\"LOSS\",\"timePlayed\":\"2010-05-12T04:00:00.000+0000\"}")
+
 	} // end if
 
 	if (clientGesture=='rock') {
 	  result = "tie";
 	  updateServer("ties");
+	  addGameSummary("{\"clientGesture\":\"ROCK\",\"serverGesture\":\"ROCK\",\"result\":\"TIE\",\"timePlayed\":\"2010-05-12T04:00:00.000+0000\"}")
+
 	} // end if
 
 	document.getElementById('results').innerHTML = result;

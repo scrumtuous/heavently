@@ -15,6 +15,8 @@ gradle --version
  */
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mcnz.dao.GameSummaryDAO;
@@ -30,6 +32,13 @@ public class RestAPI {
 	@GetMapping("/gamesummary")
 	public Collection<GameSummary> getGameSummarys() {
 		return gameSummaryDAO.getAllGameSummarys();
+	}
+	
+	@CrossOrigin
+	@PostMapping("/gamesummary")
+	public GameSummary saveGameSummary(@RequestBody GameSummary gameSummary) {
+		gameSummaryDAO.saveGameSummary(gameSummary);
+		return gameSummary;
 	}
 	
 	public static Score score = new Score();

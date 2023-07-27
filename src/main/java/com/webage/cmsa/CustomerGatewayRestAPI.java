@@ -49,7 +49,7 @@ public class CustomerGatewayRestAPI {
 	@PostMapping("/customers")
 	public ResponseEntity<?> addBetterCustomer(@RequestBody Customer c) throws Exception
 	{
-		int identifier = getAllCustomers().size() - 1;
+		int identifier = getAllCustomers().size();
 		URI location = new URI("http://localhost:8080/abc/def/customers/"+identifier);
 		// You need to return the location of an object created by a post or put as a location header
 		ResponseEntity<?> response = ResponseEntity.created(location).build();

@@ -42,6 +42,7 @@ public class CustomerGatewayRestAPI {
 	public ResponseEntity<?> deleteCustomer(@PathVariable int id)
 	{
 		getAllCustomers().remove(id);
+		// No need to send anything back for a delete other than the 200 OK response code
 		return ResponseEntity.ok().build();
 	}
 	
@@ -50,6 +51,7 @@ public class CustomerGatewayRestAPI {
 	{
 		int identifier = getAllCustomers().size() - 1;
 		URI location = new URI("http://localhost:8080/abc/def/customers/"+identifier);
+		// You need to return the location of an object created by a post or put as a location header
 		ResponseEntity<?> response = ResponseEntity.created(location).build();
 		getAllCustomers().add(c);
 		return response;

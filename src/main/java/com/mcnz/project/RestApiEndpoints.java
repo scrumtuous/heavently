@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /* application.properties must include spring.profiles.active=cameron to run this. */
+/* You may also need to include the com.mcnz.project package in your @SpringApplication's @ComponentScan */
 @Profile("cameron")
 @RestController
 @CrossOrigin

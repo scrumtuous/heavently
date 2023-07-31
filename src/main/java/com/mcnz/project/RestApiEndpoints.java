@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
 
 /* application.properties must include spring.profiles.active=cameron to run this. */
-/* You may also need to include the com.mcnz.project package in your @SpringApplication's @ComponentScan */
+/* You may also need to update your component scanning to include the com.mcnz.project package. */
 @Profile("cameron")
 @RestController
 @CrossOrigin
@@ -97,21 +98,24 @@ public class RestApiEndpoints {
 		return response;
 	}
 	
+	/* Assume username is unique. This will return one Customer. */
 	@GetMapping("/api/byname/{username}")
-	public List<CameronsCustomer> getCustomersByName(@PathVariable String username)
+	public ResponseEntity<?> getCustomersByName(@PathVariable String username)
 	{
-		System.out.println(username);
-		ArrayList<CameronsCustomer> matches = new ArrayList<CameronsCustomer>();
+		System.out.println("Looking for a user with handle: " + username);
 		for (CameronsCustomer customer : customers) {
 			if (customer.getName().equalsIgnoreCase(username)) {
-				matches.add(customer);
+				// Set the response code to 200 and add the customer to its JSON payload
+				ResponseEntity<?> response = ResponseEntity.ok(customer);
+				return response;
 			}
 		}
-		return matches;
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 	
+	/* Same as the GET mapping but handled by a post. */
 	@PostMapping("/api/byname/")
-	public List<CameronsCustomer> getCustomersByNamePost(@RequestBody String username)
+	public ResponseEntity<?> getCustomersByNamePost(@RequestBody String username)
 	{
 		return getCustomersByName(username);
 	}
